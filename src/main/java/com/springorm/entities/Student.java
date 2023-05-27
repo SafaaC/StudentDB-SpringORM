@@ -41,6 +41,14 @@ public class Student {
 	public void setStdMail(String stdMail) {
 		this.stdMail = stdMail;
 	}
+	@Override
+	public String toString() {
+		return "Student [stdId=" + stdId + ", stdName=" + stdName + ", stdMail=" + stdMail + "]";
+	}
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

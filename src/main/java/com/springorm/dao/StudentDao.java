@@ -1,6 +1,7 @@
 package com.springorm.dao;
 
 import java.util.List;
+import java.util.Scanner;
 
 import javax.transaction.Transactional;
 
@@ -9,7 +10,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import com.springorm.entities.Student;
 
 public class StudentDao {
-	
+	static Scanner sc = new Scanner(System.in);
 	private HibernateTemplate hibernateTemplate;
 	
 	public HibernateTemplate getHibernateTemplate() {
@@ -22,11 +23,11 @@ public class StudentDao {
 
 	//save student method
 	@Transactional
-	public int insert(Student std) {
+	public void insert(Student std) {
 		
-		Integer i=(Integer) this.hibernateTemplate.save(std);
+		this.hibernateTemplate.save(std);
 		System.out.println("data inserted successfully");
-		return i;
+		
 	}
 	
 	//get single data/object
@@ -53,6 +54,16 @@ public class StudentDao {
 	@Transactional
 	public void updateStudent(Student std) {
 		hibernateTemplate.update(std);
+	}
+	public static Student readInput() {
+		System.out.println("Enter Id ");
+		int id = sc.nextInt();
+		System.out.println("Enter Name ");
+		String name = sc.next();
+		System.out.println("Enter email ");
+		String mail = sc.next();
+		Student std = new Student(id, name, mail);
+		return std;
 	}
 	
 }
